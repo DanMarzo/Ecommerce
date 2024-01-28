@@ -5,7 +5,7 @@ namespace Ecommerce.Domain;
 
 public class OrderItem : BaseDomainModel
 {
-    public Produto? Produto { get; set; }
+    public Product? Produto { get; set; }
     public int ProdutoId { get; set; }
     [Column(TypeName = "DECIMAL(10,2)")]
     public decimal Preco { get; set; }

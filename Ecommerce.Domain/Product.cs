@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ecommerce.Domain;
 
-public class Produto : BaseDomainModel
+public class Product : BaseDomainModel
 {
     [Column(TypeName = "NVARCHAR(100)")]
     public string? Nome { get; set; }
@@ -16,5 +16,9 @@ public class Produto : BaseDomainModel
     public string? Vendedor { get; set; }
     public int Stock { get; set; }
     public ProductStatus Status { get; set; } = ProductStatus.Ativo;
+
     public int CategoryId { get; set; }
+    public Category? Category { get; set; }
+
+    public virtual ICollection<Review>? Reviews { get; set; }
 }
