@@ -1,10 +1,9 @@
-﻿using Ecommerce.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Ecommerce.Infrastructure.Persistence.ConfigBuilder;
+namespace Ecommerce.Domain.Configuration;
 
-public class ShoppingCartBuilder : IEntityTypeConfiguration<ShoppingCart>
+public class ShoppingCartConfiguration : IEntityTypeConfiguration<ShoppingCart>
 {
     public void Configure(EntityTypeBuilder<ShoppingCart> builder)
     {

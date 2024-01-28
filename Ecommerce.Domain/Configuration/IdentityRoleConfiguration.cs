@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Ecommerce.Infrastructure.Persistence.ConfigBuilder;
+namespace Ecommerce.Domain.Configuration;
 
-public class IdentityRoleBuilder : IEntityTypeConfiguration<IdentityRole>
+public class IdentityRoleConfiguration : IEntityTypeConfiguration<IdentityRole>
 {
     public void Configure(EntityTypeBuilder<IdentityRole> builder)
     {
