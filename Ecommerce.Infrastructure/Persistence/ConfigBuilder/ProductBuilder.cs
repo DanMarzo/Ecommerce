@@ -15,6 +15,13 @@ public class ProductBuilder : IEntityTypeConfiguration<Product>
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder
+            .HasMany(p => p.Images)
+            .WithOne(p => p.Product)
+            .HasForeignKey(p => p.ProductId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.Property(p => p.Nome)
             .HasColumnType("NVARCHAR(100)");
         builder.Property(p => p.Preco)
