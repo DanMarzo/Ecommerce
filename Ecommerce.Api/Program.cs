@@ -38,7 +38,7 @@ identityBuilder.AddSignInManager<SignInManager<Usuario>>();
 
 builder.Services.TryAddSingleton<ISystemClock, SystemClock>();
 
-var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:key"]!));
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
