@@ -45,9 +45,10 @@ var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration[
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
-        opt.TokenValidationParameters = new TokenValidationParameters { 
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey =  key,
+            IssuerSigningKey = key,
             ValidateAudience = false,
             ValidateIssuer = false,
         };
@@ -55,7 +56,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddCors(opt =>
 {
-    opt.AddPolicy("CorsPolicy", 
+    opt.AddPolicy("CorsPolicy",
         builder => builder
         .AllowAnyOrigin()
         .AllowAnyMethod()
@@ -84,4 +85,28 @@ app.UseAuthorization();
 app.UseCors("CorsPolicy");
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+
+    var service = scope.ServiceProvider;
+    var loggerFactory = service.GetRequiredService<ILoggerFactory>();
+    try
+    {
+        var context = service.GetRequiredService<EcommerceDbContext>();
+        var usuarioManager = service.GetRequiredService<UserManager<Usuario>>();
+        var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
+        await context.Database.MigrateAsync();
+        await EcommerceDbContextData.LoadDataAsync(context, usuarioManager, roleManager, loggerFactory);
+    }
+    catch (Exception ex)
+    {
+        var logger = loggerFactory.CreateLogger<Program>();
+        logger.LogError(ex, "Erro na migration");
+        throw;
+    }
+
+}
+
 app.Run();
+//Criar migrations com o EFCore de um projeto a partir de outro
+// dotnet ef migrations add Iinit -p project_path -s projeto_path_prinicipal
