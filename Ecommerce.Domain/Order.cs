@@ -4,10 +4,12 @@ namespace Ecommerce.Domain;
 
 public class Order : BaseDomainModel
 {
+    public Order() { }
+
     public Order(
-        string compradorNome,
-        string compradorEmail,
-        OrderAddress orderAddress,
+        string? compradorNome,
+        string? compradorEmail,
+        OrderAddress? orderAddress,
         decimal subTotal,
         decimal total,
         decimal imposto,

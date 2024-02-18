@@ -1,6 +1,8 @@
-﻿namespace Ecommerce.Domain;
+﻿using Ecommerce.Domain.Common;
 
-public class Address
+namespace Ecommerce.Domain;
+
+public class Address : BaseDomainModel
 {
     public string? Direcao { get; set; }
     public string? Cidade { get; set; }
