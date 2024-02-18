@@ -8,5 +8,5 @@ public class Usuario : IdentityUser
     public String? Sobrenome { get; set; }
     public String? Telefone { get; set; }
     public String? AvatarURL { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
 }
