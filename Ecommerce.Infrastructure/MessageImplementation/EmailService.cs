@@ -33,7 +33,7 @@ public class EmailService : IMailService
         catch (Exception)
         {
             _logger.LogError("O email não pode ser enviado.");
-            throw;
+            return false;
         }
     }
 }
