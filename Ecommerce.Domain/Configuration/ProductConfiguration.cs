@@ -21,11 +21,11 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Property(p => p.Nome)
+        builder.Property(p => p.Nombre)
             .HasColumnType("NVARCHAR(100)");
-        builder.Property(p => p.Preco)
+        builder.Property(p => p.Precio)
             .HasColumnType("DECIMAL(10,2)");
-        builder.Property(p => p.Descricao)
+        builder.Property(p => p.Descripcion)
             .HasColumnType("NVARCHAR(4000)");
         builder.Property(p => p.Vendedor)
          .HasColumnType("NVARCHAR(100)");

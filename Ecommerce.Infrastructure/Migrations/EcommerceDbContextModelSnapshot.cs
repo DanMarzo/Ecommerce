@@ -139,7 +139,7 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PublicCode")
+                    b.Property<string>("PublicId")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Url")
@@ -314,7 +314,7 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("Descripcion")
                         .HasColumnType("NVARCHAR(4000)");
 
                     b.Property<string>("LastModifiedBy")
@@ -323,11 +323,14 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Nombre")
                         .HasColumnType("NVARCHAR(100)");
 
-                    b.Property<decimal>("Preco")
+                    b.Property<decimal>("Precio")
                         .HasColumnType("DECIMAL(10,2)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -366,7 +369,7 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Nombre")
                         .HasColumnType("NVARCHAR(100)");
 
                     b.Property<int>("ProductId")

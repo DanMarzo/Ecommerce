@@ -6,7 +6,7 @@ namespace Ecommerce.Domain;
 public class Review : BaseDomainModel
 {
     [Column(TypeName = "NVARCHAR(100)")]
-    public string? Nome { get; set; }
+    public string? Nombre { get; set; }
     public int Rating { get; set; }
     [Column(TypeName = "NVARCHAR(4000)")]
     public string? Comentario { get; set; }

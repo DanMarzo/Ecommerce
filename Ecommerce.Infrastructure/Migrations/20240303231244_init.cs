@@ -280,12 +280,13 @@ namespace Ecommerce.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
-                    Preco = table.Column<decimal>(type: "DECIMAL(10,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "NVARCHAR(4000)", nullable: true),
+                    Nombre = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Precio = table.Column<decimal>(type: "DECIMAL(10,2)", nullable: false),
+                    Descripcion = table.Column<string>(type: "NVARCHAR(4000)", nullable: true),
                     Vendedor = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CreateBy = table.Column<string>(type: "longtext", nullable: true),
@@ -377,7 +378,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Url = table.Column<string>(type: "NVARCHAR(4000)", nullable: true),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    PublicCode = table.Column<string>(type: "longtext", nullable: true),
+                    PublicId = table.Column<string>(type: "longtext", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CreateBy = table.Column<string>(type: "longtext", nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -401,7 +402,7 @@ namespace Ecommerce.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Nombre = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Comentario = table.Column<string>(type: "NVARCHAR(4000)", nullable: true),
                     ProductId = table.Column<int>(type: "int", nullable: false),
