@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Application.Features.Products.Queries.GetProductList;
 using Ecommerce.Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -11,14 +12,12 @@ namespace Ecommerce.Api.Controllers;
 public class ProductController : ControllerBase
 {
     private IMediator _mediator;
-    public ProductController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    public ProductController(IMediator mediator) => _mediator = mediator;
 
+    [AllowAnonymous]
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<IEnumerable<Product>>> GetProductList()
+    [ProducesResponseType(typeof(IReadOnlyList<Product>), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<IReadOnlyList<Product>>> GetProductList()
     {
         var query = new GetProductListQuery();
         var productos = await _mediator.Send(query);

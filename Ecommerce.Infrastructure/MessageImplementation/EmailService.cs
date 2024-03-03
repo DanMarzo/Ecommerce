@@ -7,7 +7,7 @@ using SendGrid.Helpers.Mail;
 
 namespace Ecommerce.Infrastructure.MessageImplementation;
 
-public class EmailService : IMailService
+public class EmailService : IEmailService
 {
     public EmailSettings _emailSettings { get; }
     public ILogger<EmailService> _logger { get; }

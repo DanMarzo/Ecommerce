@@ -2,7 +2,7 @@
 
 namespace Ecommerce.Application.Contracts.Infrastructure;
 
-public interface IMailService
+public interface IEmailService
 {
     Task<bool> SendEmail(EmailMessage email, string token);
 }
