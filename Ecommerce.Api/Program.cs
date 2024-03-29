@@ -1,5 +1,6 @@
 using Ecommerce.Application;
 using Ecommerce.Application.Contracts.Infrastructure;
+using Ecommerce.Application.Features.Auths.Users.Commands.LoginUser;
 using Ecommerce.Application.Features.Products.Queries.GetProductList;
 using Ecommerce.Domain;
 using Ecommerce.Infrastructure;
@@ -13,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
-using System.Security.Cryptography.Xml;
+using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -21,7 +22,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
-
 
 builder.Services.AddDbContext<EcommerceDbContext>(
     options => options.UseMySQL(
@@ -31,7 +31,9 @@ builder.Services.AddDbContext<EcommerceDbContext>(
     ));
 // Add services to the container.
 
-builder.Services.AddMediatR(mt => mt.RegisterServicesFromAssembly(typeof(GetProductListQueryHandler).Assembly));
+var myHandlers = AppDomain.CurrentDomain.Load("Ecommerce.Application");
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(myHandlers));
+
 builder.Services.AddScoped<IManageImageService, ManageImageService>();
 
 builder.Services.AddControllers(opt =>
@@ -42,14 +44,14 @@ builder.Services.AddControllers(opt =>
 }).AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 //Configurando Identity
-IdentityBuilder identityBuilder = builder.Services.AddIdentityCore<Usuario>();
+builder.Services.AddIdentityCore<Usuario>()
+    .AddRoles<IdentityRole>()
+    .AddRoleManager<RoleManager<IdentityRole>>()
+    .AddDefaultTokenProviders()
+    .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<Usuario, IdentityRole>>()
+    .AddEntityFrameworkStores<EcommerceDbContext>()
+    .AddSignInManager<SignInManager<Usuario>>();
 
-identityBuilder = new IdentityBuilder(identityBuilder.UserType, identityBuilder.Services);
-//Acessivel para o payload do token  - AddDefaultTokenProviders();
-identityBuilder.AddRoles<IdentityRole>().AddDefaultTokenProviders();
-identityBuilder.AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<Usuario, IdentityRole>>();
-identityBuilder.AddEntityFrameworkStores<EcommerceDbContext>();
-identityBuilder.AddSignInManager<SignInManager<Usuario>>();
 
 builder.Services.TryAddSingleton<ISystemClock, SystemClock>();
 
@@ -79,8 +81,6 @@ builder.Services.AddCors(opt =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 
 var app = builder.Build();
 

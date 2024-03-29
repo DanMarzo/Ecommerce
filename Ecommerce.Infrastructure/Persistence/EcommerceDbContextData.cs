@@ -14,37 +14,37 @@ public class EcommerceDbContextData
         {
             if (!roleManager.Roles.Any())
             {
-                await roleManager.CreateAsync(new IdentityRole(Role.ADMIN));
-                await roleManager.CreateAsync(new IdentityRole(Role.USER));
+                await roleManager.CreateAsync(new IdentityRole(RoleAuthorization.ADMIN));
+                await roleManager.CreateAsync(new IdentityRole(RoleAuthorization.USER));
             }
 
             if (!userManager.Users.Any())
             {
                 Usuario usuarioAdmin = new()
                 {
-                    Nome = "Dan",
-                    Sobrenome = "Marzo",
+                    Nombre = "Dan",
+                    Apellido= "Marzo",
                     Email = "marzogildan@gmail.com",
                     UserName = "DanMarzo",
-                    Telefone = "11932005778",
+                    Telefono = "11932005778",
                     AvatarURL = "https://avatars.githubusercontent.com/u/88063716?v=4",
                     IsActive = true,
                 };
                 await userManager.CreateAsync(usuarioAdmin, "1q2w3e4r@AD");
-                await userManager.AddToRoleAsync(usuarioAdmin, Role.ADMIN);
+                await userManager.AddToRoleAsync(usuarioAdmin, RoleAuthorization.ADMIN);
 
                 Usuario usuario = new()
                 {
-                    Nome = "Thiagao",
-                    Sobrenome = "Roque",
+                    Nombre = "Thiagao",
+                    Apellido = "Roque",
                     Email = "boladon@gmail.com",
                     UserName = "Thiagao",
-                    Telefone = "11932005778",
+                    Telefono = "11932005778",
                     AvatarURL = "https://avatars.githubusercontent.com/u/102858868?v=4",
                     IsActive = true,
                 };
                 await userManager.CreateAsync(usuario, "1q2w3e4r@AD");
-                await userManager.AddToRoleAsync(usuario, Role.USER);
+                await userManager.AddToRoleAsync(usuario, RoleAuthorization.USER);
             }
             if (!context.Categories!.Any())
             {

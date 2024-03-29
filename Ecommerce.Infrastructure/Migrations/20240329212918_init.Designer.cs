@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(EcommerceDbContext))]
-    [Migration("20240303231244_init")]
+    [Migration("20240329212918_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -474,6 +474,9 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Apellido")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("AvatarURL")
                         .HasColumnType("longtext");
 
@@ -497,7 +500,7 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Nombre")
                         .HasColumnType("longtext");
 
                     b.Property<string>("NormalizedEmail")
@@ -520,10 +523,7 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Sobrenome")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Telefone")
+                    b.Property<string>("Telefono")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("TwoFactorEnabled")

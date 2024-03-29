@@ -58,9 +58,9 @@ namespace Ecommerce.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Nome = table.Column<string>(type: "longtext", nullable: true),
-                    Sobrenome = table.Column<string>(type: "longtext", nullable: true),
-                    Telefone = table.Column<string>(type: "longtext", nullable: true),
+                    Nombre = table.Column<string>(type: "longtext", nullable: true),
+                    Apellido = table.Column<string>(type: "longtext", nullable: true),
+                    Telefono = table.Column<string>(type: "longtext", nullable: true),
                     AvatarURL = table.Column<string>(type: "longtext", nullable: true),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),

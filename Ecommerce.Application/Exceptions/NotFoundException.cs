@@ -2,8 +2,5 @@
 
 public class NotFoundException : ApplicationException
 {
-    public NotFoundException(string name, object key) : base($"Entity {name} ({key}) nao foi localizado")
-    {
-        
-    }
+    public NotFoundException(string name, object key) : base($"Entity {name} ({key}) nao foi localizado") { }
 }
